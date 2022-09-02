@@ -19,7 +19,7 @@
 					</td>
 					<td scope="row" class="py-4 px-4">{{ $subscription->getFormattedPrice() }}</td>
 					<td scope="row" class="py-4 px-4">{{ ucfirst($subscription->billingCycle->name) }}</td>
-					<td scope="row" class="py-4 px-4 w-auto"><a href="{{ route('subscriptions.edit', $subscription) }}" class="inline-block text-sm underline">Manage</a></td>
+					<td scope="row" class="py-4 px-4 w-auto text-right"><a href="{{ route('subscriptions.edit', $subscription) }}" class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150">Manage</a></td>
 				</tr>
 			@empty
 				<tr>
