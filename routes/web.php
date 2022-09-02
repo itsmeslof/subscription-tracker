@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
+use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubscriptionController;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +19,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('dashboard');
+    return redirect()->route('subscriptions.index');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->prefix('subscriptions')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('subscriptions.index');
+    Route::get('/{subscription:slug}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
+    Route::get('/create', [SubscriptionController::class, 'create'])->name('subscriptions.create');
+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+    Route::patch('/{subscription:slug}/update', [SubscriptionController::class, 'update'])->name('subscriptions.update');
+    Route::delete('/{subscription:slug}/delete', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
+
+    Route::post('/{subscription:slug}/cancel', CancelSubscriptionController::class)->name('subscriptions.cancel');
+    Route::post('/{subscription:slug}/activate', ActivateSubscriptionController::class)->name('subscriptions.activate');
+});
 
 require __DIR__.'/auth.php';

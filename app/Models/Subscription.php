@@ -46,6 +46,18 @@ class Subscription extends Model
         return $money->formatTo('en_US');
     }
 
+    public function getFullAmountAsDecimal()
+    {
+        $money = Money::ofMinor(
+            $this->amount,
+            'USD',
+            null,
+            Roundingmode::DOWN
+        );
+
+        return $money->getAmount();
+    }
+
     public function scopeActive($query)
     {
         return $query->where('cancelled', false);

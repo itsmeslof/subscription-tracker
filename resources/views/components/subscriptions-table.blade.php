@@ -11,7 +11,7 @@
 	
 		<tbody>
 			@forelse ($subscriptions as $subscription)
-				<tr>
+				<tr class="bg-white hover:bg-gray-100">
 					<td scope="row" class="py-4 px-4">
 						<div class="flex justify-start space-x-2 items-center">
 							<span style="width: 20px; height: 20px; border-radius: 100px; background-color: {{ $subscription->color }};"></span> <p>{{ $subscription->name }}</p>
@@ -19,7 +19,7 @@
 					</td>
 					<td scope="row" class="py-4 px-4">{{ $subscription->getFormattedPrice() }}</td>
 					<td scope="row" class="py-4 px-4">{{ ucfirst($subscription->billingCycle->name) }}</td>
-					<td scope="row" class="py-4 px-4 w-auto"><a href="#">Manage</a></td>
+					<td scope="row" class="py-4 px-4 w-auto"><a href="{{ route('subscriptions.edit', $subscription) }}" class="inline-block text-sm underline">Manage</a></td>
 				</tr>
 			@empty
 				<tr>
