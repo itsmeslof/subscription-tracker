@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
 
 	public function edit(Request $request, Subscription $subscription)
 	{
-		return view('subscriptions.update', [
+		return view('subscriptions.edit', [
 			'user' => $request->user(),
 			'availableBillingCycles' => BillingCycle::all(),
 			'subscription' => $subscription
