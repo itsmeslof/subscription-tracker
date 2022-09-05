@@ -42,7 +42,8 @@ class UserFactory extends Factory
     public function asAdmin()
     {
         return $this->state(fn (array $attributes) => [
-            'is_admin' => true
+            'is_admin' => true,
+            'username' => 'admin'
         ]);
     }
 }
