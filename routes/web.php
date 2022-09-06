@@ -4,8 +4,7 @@ use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserPasswordController;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('subscriptions.index');
-});
-
-
-Route::middleware('auth')->prefix('account')->group(function () {
-    Route::get('/', [UserController::class, 'edit'])->middleware('password.confirm')->name('user.settings');
-    Route::patch('/update', [UserController::class, 'update'])->name('user.update');
-    Route::patch('/password/update', [UserPasswordController::class, 'update'])->name('user.password.update');
 });
 
 Route::middleware('auth')->prefix('subscriptions')->group(function () {
