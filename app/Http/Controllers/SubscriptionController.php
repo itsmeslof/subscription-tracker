@@ -34,6 +34,8 @@ class SubscriptionController extends Controller
 	public function store(CreateSubscriptionRequest $request)
 	{
 		$validated = $request->validated();
+
+		$request->user()->subscriptions()->create($validated);
 	
 		return redirect()->route('subscriptions.index');
 	}
