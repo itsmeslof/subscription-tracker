@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->createAdminAccount();
+
         $this->call([
             BillingCycleSeeder::class
         ]);
+    }
+
+
+    private function createAdminAccount()
+    {
+        User::factory()->asAdmin()->create();
     }
 }

@@ -35,6 +35,8 @@ class SubscriptionController extends Controller
 	{
 		$validated = $request->validated();
 	
+		$request->user()->subscriptions()->create($validated);
+		
 		return redirect()->route('subscriptions.index');
 	}
 
