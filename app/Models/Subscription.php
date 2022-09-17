@@ -63,6 +63,11 @@ class Subscription extends Model
         return $query->where('cancelled', false);
     }
 
+    public function scopeCancelled($query)
+    {
+        return $query->where('cancelled', true);
+    }
+
     public function scopeMonthly($query)
     {
         return $query->where('billing_cycle_id', BillingCycle::where('name', 'monthly')->value('id'));
@@ -76,5 +81,10 @@ class Subscription extends Model
     public function scopeAnnually($query)
     {
         return $query->where('billing_cycle_id', BillingCycle::where('name', 'annually')->value('id'));
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
     }
 }
