@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\SubscriptionFilter;
 use App\Http\Requests\CreateSubscriptionRequest;
 use App\Http\Requests\SubscriptionRequest;
 use App\Http\Requests\UpdateSubscriptionRequest;
@@ -13,7 +14,22 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-	public function index() {}
+	public function index(Request $request)
+	{
+		$user = $request->user();
+
+		$subscriptions = $user->subscriptions()->filter(new SubscriptionFilter())->paginate(10)->withQueryString();
+
+		$status = in_array(request()->status, ['active', 'cancelled']) ? request()->status : 'active';
+		$cycle = in_array(request()->cycle, ['monthly', 'semiannually', 'annually']) ? request()->cycle : 'all';
+
+		return view('subscriptions.index', [
+			'user' => $user,
+			'subscriptions' => $subscriptions,
+			'status' => $status,
+			'cycle' => $cycle
+		]);
+	}
 
 	public function create(Request $request)
 	{
