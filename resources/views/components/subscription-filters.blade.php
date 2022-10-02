@@ -1,4 +1,8 @@
-<div class="flex justify-between items-end" x-data="{
+<div class="p-6 border-b border-slate-300">
+	<h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight"><span class="capitalize">{{ $status }}</span> Subscriptions</h2>
+</div>
+
+<div class="flex justify-between items-end p-6" x-data="{
 	currentFilters: {
 		status: '{{ $status }}',
 		cycle: '{{ $cycle }}'
@@ -15,7 +19,7 @@
 				<x-slot name="trigger">
 					<button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px]">
 						<p x-text="newFilters.status" class="capitalize"></p>
-			
+
 						<div class="ml-1">
 							<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 								<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -23,14 +27,13 @@
 						</div>
 					</button>
 				</x-slot>
-
 				<x-slot name="content">
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.status = 'active';">
 						Active
 					</a>
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.status = 'cancelled';">
 						Cancelled
@@ -44,7 +47,7 @@
 				<x-slot name="trigger">
 					<button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px]">
 						<p x-text="newFilters.cycle" class="capitalize"></p>
-			
+
 						<div>
 							<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 								<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -52,24 +55,23 @@
 						</div>
 					</button>
 				</x-slot>
-
 				<x-slot name="content">
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.cycle = 'all';">
 						All
 					</a>
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.cycle = 'monthly';">
 						Monthly
 					</a>
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.cycle = 'semiannually';">
 						Semiannually
 					</a>
-					<a href="#" 
+					<a href="#"
 						class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
 						@click="$event.preventDefault(); newFilters.cycle = 'annually';">
 						Annually
@@ -97,6 +99,4 @@
 	</div>
 </div>
 
-<div class="mt-6">
-	<h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight"><span class="capitalize">{{ $status }}</span> Subscriptions</h2>
-</div>
+
