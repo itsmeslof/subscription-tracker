@@ -14,61 +14,61 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-	public function index(Request $request)
-	{
-		$user = $request->user();
+    public function index(Request $request)
+    {
+        $user = $request->user();
 
-		$subscriptions = $user->subscriptions()->filter(new SubscriptionFilter())->paginate(10)->withQueryString();
+        $subscriptions = $user->subscriptions()->filter($request->only(['status', 'cycle']))->paginate(10)->withQueryString();
 
-		$status = in_array(request()->status, ['active', 'cancelled']) ? request()->status : 'active';
-		$cycle = in_array(request()->cycle, ['monthly', 'semiannually', 'annually']) ? request()->cycle : 'all';
+        $status = in_array(request()->status, ['active', 'cancelled']) ? request()->status : 'active';
+        $cycle = in_array(request()->cycle, ['monthly', 'semiannually', 'annually']) ? request()->cycle : 'all';
 
-		return view('subscriptions.index', [
-			'user' => $user,
-			'subscriptions' => $subscriptions,
-			'status' => $status,
-			'cycle' => $cycle
-		]);
-	}
+        return view('subscriptions.index', [
+            'user' => $user,
+            'subscriptions' => $subscriptions,
+            'status' => $status,
+            'cycle' => $cycle
+        ]);
+    }
 
-	public function create(Request $request)
-	{
-		return view('subscriptions.create', [
-			'availableBillingCycles' => BillingCycle::all(),
-		]);
-	}
+    public function create(Request $request)
+    {
+        return view('subscriptions.create', [
+            'availableBillingCycles' => BillingCycle::all(),
+        ]);
+    }
 
-	public function edit(Request $request, Subscription $subscription)
-	{
-		return view('subscriptions.edit', [
-			'user' => $request->user(),
-			'availableBillingCycles' => BillingCycle::all(),
-			'subscription' => $subscription
-		]);
-	}
+    public function edit(Request $request, Subscription $subscription)
+    {
+        return view('subscriptions.edit', [
+            'user' => $request->user(),
+            'availableBillingCycles' => BillingCycle::all(),
+            'subscription' => $subscription
+        ]);
+    }
 
-	public function store(CreateSubscriptionRequest $request)
-	{
-		$validated = $request->validated();
+    public function store(CreateSubscriptionRequest $request)
+    {
+        $validated = $request->validated();
 
-		$request->user()->subscriptions()->create($validated);
-	
-		return redirect()->route('subscriptions.index');
-	}
+        $request->user()->subscriptions()->create($validated);
 
-	public function update(UpdateSubscriptionRequest $request, Subscription $subscription)
-	{
-		$subscription->update(
-			$request->validated()
-		);
+        return redirect()->route('subscriptions.index');
+    }
 
-		return redirect()->route('subscriptions.index');
-	}
+    public function update(UpdateSubscriptionRequest $request, Subscription $subscription)
+    {
+        $subscription->update(
+            $request->validated()
+        );
 
-	public function destroy(Request $request, Subscription $subscription)
-	{
-		$subscription->delete();
+        return redirect()->route('subscriptions.edit', $subscription)->with('status', 'Subscription updated!');
+    }
 
-		return redirect()->route('subscriptions.index');
-	}
+    public function destroy(Request $request, Subscription $subscription)
+    {
+        $subscription->delete();
+
+        return redirect()->route('subscriptions.index')->with('status', 'Subscription deleted');
+    }
 }
