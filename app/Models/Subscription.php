@@ -14,7 +14,7 @@ class Subscription extends Model
 {
     use HasFactory, HasSlug;
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
@@ -83,8 +83,17 @@ class Subscription extends Model
         return $query->where('billing_cycle_id', BillingCycle::where('name', 'annually')->value('id'));
     }
 
-    public function scopeFilter($query, $filters)
+    public function scopeFilter($query, array $filters)
     {
-        return $filters->apply($query);
+        $query->when($filters['status'] ?? null, function ($query, $status) {
+            $query->where('cancelled', $status === 'cancelled');
+        })->when($filters['cycle'] ?? null, function ($query, $cycle) {
+            $billingCycle = BillingCycle::where('name', $cycle)->first();
+            if (!$billingCycle) {
+                return;
+            }
+
+            $query->where('billing_cycle_id', $billingCycle->id);
+        });
     }
 }
