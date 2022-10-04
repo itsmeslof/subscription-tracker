@@ -10,10 +10,8 @@
                 @endif
             </div>
             <div class="p-6">
-                <div>
-                    <x-status-errors :errors="$errors"></x-status-errors>
-					<x-status-info-alert :status="session('status')"></x-status-alert>
-                </div>
+                <x-status-errors :errors="$errors"></x-status-errors>
+                <x-status-info-alert :status="session('status')"></x-status-alert>
                 <form action="{{ route('subscriptions.update', $subscription) }}" method="POST">
                     @csrf
                     @method('PATCH')
@@ -22,7 +20,7 @@
                         <div>
                             <x-label for="color" value="Color" />
 
-                            <x-input style="border-radius: 200px;" id="color" class="block mt-1 w-full" type="color" name="color" :value="old('color', $subscription->color)" required />
+                            <x-input id="color" class="block mt-1 w-full" type="color" name="color" :value="old('color', $subscription->color)" required />
                         </div>
                         <div>
                             <x-label for="name" value="Name" />
