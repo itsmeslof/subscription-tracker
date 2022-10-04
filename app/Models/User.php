@@ -4,10 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Helpers\MoneyHelper;
 use Brick\Math\RoundingMode;
 use Brick\Money\Context\DefaultContext;
 use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,49 +48,67 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setAsAdmin()
+    /**
+     * Make the user an administrator.
+     */
+    public function setAsAdmin(): void
     {
         $this->update(['is_admin' => true]);
     }
 
-    public function subscriptions()
+    /**
+     * Get the subscriptions belonging to the user.
+     *
+     * @return hasMany
+     */
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
     }
 
-    public function getMinorCostOfActiveMonthlySubscriptions()
+    /**
+     * Get the minor cost of the user's active monthly subscriptions.
+     *
+     * @return int
+     */
+    private function getMinorCostOfActiveMonthlySubscriptions(): int
     {
         return $this->subscriptions()->active()->monthly()->pluck('amount')->sum();
     }
 
-    public function getMinorCostOfAllActiveSubscriptionsAnnually()
+    /**
+     * Get the minor annual cost of the user's active subscriptions.
+     *
+     * @return int
+     */
+    private function getMinorCostOfAllActiveSubscriptionsAnnually(): int
     {
         return (
-            ($this->getMinorCostOfActiveMonthlySubscriptions() * 12) + 
-            ($this->subscriptions()->active()->semiannually()->pluck('amount')->sum() * 2) + 
+            ($this->getMinorCostOfActiveMonthlySubscriptions() * 12) +
+            ($this->subscriptions()->active()->semiannually()->pluck('amount')->sum() * 2) +
             $this->subscriptions()->active()->annually()->pluck('amount')->sum()
         );
     }
 
-    public function getFormattedMonthlySubscriptionCost()
+    /**
+     * Get the cost of the user's active monthly subscriptions as a formatted currency string.
+     *
+     * @return string
+     */
+    public function getFormattedMonthlySubscriptionCost(): string
     {
-        $money = $this->createMoneyFromMinor($this->getMinorCostOfActiveMonthlySubscriptions());
+        $money = MoneyHelper::createMoneyOfMinor($this->getMinorCostOfActiveMonthlySubscriptions());
         return $money->formatTo('en_US');
     }
 
-    public function getFormattedAnnualSubscriptionCost()
+    /**
+     * Get the annual cost of the user's active subscriptions as a formatted currency string.
+     *
+     * @return string
+     */
+    public function getFormattedAnnualSubscriptionCost(): string
     {
-        $money = $this->createMoneyFromMinor($this->getMinorCostOfAllActiveSubscriptionsAnnually());
+        $money = MoneyHelper::createMoneyOfMinor($this->getMinorCostOfAllActiveSubscriptionsAnnually());
         return $money->formatTo('en_US');
-    }
-
-    private function createMoneyFromMinor($minorAmount, $currency = 'USD', $context = null, $roundingMode = RoundingMode::DOWN)
-    {
-        return Money::ofMinor(
-            $minorAmount,
-            $currency,
-            $context,
-            $roundingMode
-        );
     }
 }

@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\SubscriptionFilter;
 use App\Http\Requests\CreateSubscriptionRequest;
-use App\Http\Requests\SubscriptionRequest;
 use App\Http\Requests\UpdateSubscriptionRequest;
 use App\Models\BillingCycle;
 use App\Models\Subscription;
-use Brick\Math\RoundingMode;
-use Brick\Money\Money;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $user = $request->user();
 
@@ -31,14 +29,14 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         return view('subscriptions.create', [
             'availableBillingCycles' => BillingCycle::all(),
         ]);
     }
 
-    public function edit(Request $request, Subscription $subscription)
+    public function edit(Request $request, Subscription $subscription): View
     {
         return view('subscriptions.edit', [
             'user' => $request->user(),
@@ -47,7 +45,7 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function store(CreateSubscriptionRequest $request)
+    public function store(CreateSubscriptionRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -56,7 +54,7 @@ class SubscriptionController extends Controller
         return redirect()->route('subscriptions.index');
     }
 
-    public function update(UpdateSubscriptionRequest $request, Subscription $subscription)
+    public function update(UpdateSubscriptionRequest $request, Subscription $subscription): RedirectResponse
     {
         $subscription->update(
             $request->validated()
@@ -65,7 +63,7 @@ class SubscriptionController extends Controller
         return redirect()->route('subscriptions.edit', $subscription)->with('status', 'Subscription updated!');
     }
 
-    public function destroy(Request $request, Subscription $subscription)
+    public function destroy(Request $request, Subscription $subscription): RedirectResponse
     {
         $subscription->delete();
 
