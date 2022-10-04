@@ -25,7 +25,7 @@
                         <div>
                             <x-label for="name" value="Name" />
 
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $subscription->name)" required autofocus />
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $subscription->name)" required />
                         </div>
                         <div>
                             <x-label for="amount" value="Amount" />
@@ -34,7 +34,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <span class="text-gray-500 sm:text-sm">$</span>
                                 </div>
-                                <x-input id="amount" class="block mt-1 w-full pl-7" type="number" min="0.01" step="0.01" name="amount" :value="old('amount', $subscription->getFullAmountAsDecimal())" required autofocus />
+                                <x-input id="amount" class="block mt-1 w-full pl-7" type="number" min="0.01" step="0.01" name="amount" :value="old('amount', $subscription->getFullAmountAsDecimal())" required />
                             </div>
                         </div>
                         <div>
