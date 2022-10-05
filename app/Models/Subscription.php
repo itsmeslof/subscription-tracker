@@ -85,8 +85,10 @@ class Subscription extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['status'] ?? null, function ($query, $status) {
+        $query->when($filters['status'] ?? false, function ($query, $status) {
             $query->where('cancelled', $status === 'cancelled');
+        }, function ($query) {
+            $query->where('cancelled', false);
         })->when($filters['cycle'] ?? null, function ($query, $cycle) {
             $billingCycle = BillingCycle::where('name', $cycle)->first();
             if (!$billingCycle) {
