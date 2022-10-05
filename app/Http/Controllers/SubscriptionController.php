@@ -51,7 +51,7 @@ class SubscriptionController extends Controller
 
         $request->user()->subscriptions()->create($validated);
 
-        return redirect()->route('subscriptions.index');
+        return redirect()->route('subscriptions.index')->with('status', 'Subscription added!');
     }
 
     public function update(UpdateSubscriptionRequest $request, Subscription $subscription): RedirectResponse

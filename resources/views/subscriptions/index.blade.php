@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
+        <x-status-info-alert :status="session('status')"></x-status-alert>
         <div class="grid gap-8 grid-cols-2 mb-8">
             <x-monthly-expenses-card :amount="$user->getFormattedMonthlySubscriptionCost()" />
             <x-annual-expenses-card :amount="$user->getFormattedAnnualSubscriptionCost()" />
