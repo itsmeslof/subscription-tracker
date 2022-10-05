@@ -16,4 +16,14 @@ class MoneyHelper
             $roundingMode
         );
     }
+
+    public static function createMoney($amount, $currency = 'USD', $context = null, $roundingMode = RoundingMode::DOWN): Money
+    {
+        return Money::of(
+            $amount,
+            $currency,
+            $context,
+            $roundingMode
+        );
+    }
 }
