@@ -35,7 +35,7 @@ class CreateSubscriptionRequest extends FormRequest
         ];
     }
 
-	protected function prepareForValidation()
+    protected function prepareForValidation()
     {
         $money = Money::of(
             $this->amount,

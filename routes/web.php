@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
@@ -30,7 +29,7 @@ Route::middleware('auth')->prefix('account')->group(function () {
 });
 
 Route::middleware('auth')->prefix('subscriptions')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('subscriptions.index');
+    Route::get('/', [SubscriptionController::class, 'index'])->middleware(['auth'])->name('subscriptions.index');
     Route::get('/{subscription:slug}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
     Route::get('/create', [SubscriptionController::class, 'create'])->name('subscriptions.create');
     Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');

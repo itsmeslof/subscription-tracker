@@ -1,54 +1,29 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-slate-300">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between py-4">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('subscriptions.index') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
-
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-2 sm:flex">
                     <x-nav-link :href="route('subscriptions.index')" :active="request()->routeIs('subscriptions.index')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
+                        Account Settings
                     </x-nav-link>
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->username }}</div>
+            <form method="POST" action="{{ route('logout') }}" class="hidden sm:flex">
+                @csrf
 
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('user.settings')">Account Settings</x-dropdown-link>
-                        
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
+                <button class="rounded-lg inline-flex items-center px-5 py-2 text-sm font-medium leading-5 bg-white text-slate-500 border border-slate-300 hover:text-white hover:bg-slate-600 hover:border-slate-600 focus:border-slate-600 hover:text-white focus:outline-none focus:ring ring-blue-300 focus:text-white focus:bg-slate-600 transition ease-in-out duration-150">
+                    Logout
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="ml-2">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 10C2 9.80109 2.07902 9.61032 2.21967 9.46967C2.36032 9.32902 2.55109 9.25 2.75 9.25H15.34L13.24 7.3C13.1678 7.23302 13.1094 7.15248 13.0683 7.06296C13.0272 6.97345 13.0042 6.87671 13.0005 6.77828C12.9968 6.67985 13.0125 6.58165 13.0467 6.4893C13.0809 6.39694 13.133 6.31222 13.2 6.24C13.3353 6.09413 13.5229 6.00797 13.7217 6.00046C13.8201 5.99675 13.9183 6.01246 14.0107 6.0467C14.1031 6.08093 14.1878 6.13302 14.26 6.2L17.76 9.45C17.8357 9.52021 17.8961 9.6053 17.9375 9.69994C17.9788 9.79458 18.0001 9.89673 18.0001 10C18.0001 10.1033 17.9788 10.2054 17.9375 10.3001C17.8961 10.3947 17.8357 10.4798 17.76 10.55L14.26 13.8C14.1141 13.9353 13.9205 14.007 13.7217 13.9995C13.5229 13.992 13.3353 13.9059 13.2 13.76C13.0647 13.6141 12.993 13.4205 13.0005 13.2217C13.008 13.0229 13.0941 12.8353 13.24 12.7L15.34 10.75H2.75C2.55109 10.75 2.36032 10.671 2.21967 10.5303C2.07902 10.3897 2 10.1989 2 10Z" />
+                    </svg>
+                </button>
+            </form>
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
