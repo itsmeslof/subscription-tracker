@@ -2,11 +2,7 @@
 
 namespace App\Http\Requests;
 
-use BillingCycle;
-use Brick\Math\RoundingMode;
-use Brick\Money\Money;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CreateSubscriptionRequest extends FormRequest
 {
@@ -37,15 +33,8 @@ class CreateSubscriptionRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $money = Money::of(
-            $this->amount,
-            'USD',
-            null,
-            RoundingMode::DOWN
-        );
-
         $this->merge([
-            'amount' => $money->getMinorAmount()->toInt()
+            'amount' => str_replace(',', '', $this->amount)
         ]);
     }
 }

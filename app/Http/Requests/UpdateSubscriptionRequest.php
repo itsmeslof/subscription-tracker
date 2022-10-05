@@ -2,11 +2,7 @@
 
 namespace App\Http\Requests;
 
-use BillingCycle;
-use Brick\Math\RoundingMode;
-use Brick\Money\Money;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateSubscriptionRequest extends FormRequest
 {
@@ -31,22 +27,14 @@ class UpdateSubscriptionRequest extends FormRequest
             'name' => ['sometimes', 'required', 'string'],
             'amount' => ['sometimes', 'required', 'numeric'],
             'billing_cycle_id' => ['sometimes', 'required', 'exists:billing_cycles,id'],
-            'color' => ['sometimes', 'required', 'string', 'size:7'],
-            'cancelled' => ['sometimes', 'required', 'boolean']
+            'color' => ['sometimes', 'required', 'string', 'size:7']
         ];
     }
 
     protected function prepareForValidation()
     {
-        $money = Money::of(
-            $this->amount,
-            'USD',
-            null,
-            RoundingMode::DOWN
-        );
-
         $this->merge([
-            'amount' => $money->getMinorAmount()->toInt()
+            'amount' => str_replace(',', '', $this->amount)
         ]);
     }
 }
