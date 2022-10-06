@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSubscriptionRequest;
-use App\Http\Requests\UpdateSubscriptionRequest;
 use App\Models\BillingCycle;
 use App\Models\Subscription;
 use App\Services\SubscriptionService;
@@ -62,7 +61,7 @@ class SubscriptionController extends Controller
         return redirect()->route('subscriptions.index')->with('status', 'Subscription added!');
     }
 
-    public function update(UpdateSubscriptionRequest $request, Subscription $subscription): RedirectResponse
+    public function update(CreateSubscriptionRequest $request, Subscription $subscription): RedirectResponse
     {
         $this->subscriptionService->update($subscription, $request->validated());
 
