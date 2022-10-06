@@ -20,7 +20,11 @@
                     </td>
                     <td scope="row" class="py-4 px-4">{{ $subscription->getFormattedPrice() }}</td>
                     <td scope="row" class="py-4 px-4"><span class="bg-slate-200 rounded-lg py-1 px-3 inline-block capitalize">{{ $subscription->billingCycle->name }}</span></td>
-                    <td scope="row" class="py-4 px-4"><span class="bg-slate-200 rounded-lg py-1 px-3 inline-block">First of the month</span></td>
+                    <td scope="row" class="py-4 px-4">
+                        @if ($subscription->renewal_note)
+                            <span class="bg-slate-200 rounded-lg py-1 px-3 inline-block">{{ $subscription->renewal_note }}</span>
+                        @endif
+                    </td>
                     <td scope="row" class="py-4 px-4 w-auto text-right"><a href="{{ route('subscriptions.edit', $subscription) }}" class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150">Manage</a></td>
                 </tr>
             @empty

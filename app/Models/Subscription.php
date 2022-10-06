@@ -26,7 +26,8 @@ class Subscription extends Model
         'amount',
         'billing_cycle_id',
         'color',
-        'cancelled'
+        'cancelled',
+        'renewal_note'
     ];
 
     public function billingCycle()

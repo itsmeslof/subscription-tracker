@@ -53,6 +53,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div>
+                            <x-label for="renewal_note" value="Renewal" />
+
+                            <x-input id="renewal_note" class="block mt-1 w-full" type="text" name="renewal_note" :value="$subscription->renewal_note" />
+                        </div>
                         <div class="mt-6">
                             <button type="submit" class="flex items-center text-sm font-medium border border-slate-600 bg-slate-600 text-white hover:text-white hover:bg-slate-700 hover:border-slate-700 focus:outline-none focus:outline-none focus:ring ring-blue-300 focus:text-white focus:bg-slate-700 focus:border-slate-700 transition duration-150 ease-in-out px-5 py-2 rounded-lg">Update Subscription</button>
                         </div>

@@ -27,7 +27,8 @@ class CreateSubscriptionRequest extends FormRequest
             'name' => ['required', 'string'],
             'amount' => ['required', 'numeric'],
             'billing_cycle_id' => ['required', 'exists:billing_cycles,id'],
-            'color' => ['required', 'string', 'size:7']
+            'color' => ['required', 'string', 'size:7'],
+            'renewal_note' => ['nullable', 'string']
         ];
     }
 
