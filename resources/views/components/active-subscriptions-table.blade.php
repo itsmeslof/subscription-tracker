@@ -1,4 +1,4 @@
-<div class="overflow-x-auto relative">
+<div class="overflow-x-auto relative overflow-y-hidden">
     <table class="w-full text-left text-sm">
         <thead class="bg-slate-100 text-slate-600 border-y border-slate-300">
             <tr>

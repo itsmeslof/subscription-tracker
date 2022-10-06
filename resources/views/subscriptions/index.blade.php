@@ -7,8 +7,8 @@
         </div>
 
         <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
-            <x-subscription-filters :status="$status" :cycle="$cycle" />
-            <x-subscriptions-table :subscriptions="$subscriptions" :status="$status" />
+            <x-subscription-filters :status="$filterData->get('status')" :cycle="$filterData->get('cycle')" />
+            <x-subscriptions-table :subscriptions="$subscriptions" :status="$filterData->get('status')" />
             @if ($subscriptions->hasPages())
                 <div class="px-6 py-6 bg-slate-100 border-t border-slate-300">
                     {{ $subscriptions->links() }}
