@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\MoneyHelper;
 use App\Models\User;
 
 class UserService
