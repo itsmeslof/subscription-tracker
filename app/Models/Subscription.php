@@ -98,4 +98,9 @@ class Subscription extends Model
             $query->where('billing_cycle_id', $billingCycle->id);
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
