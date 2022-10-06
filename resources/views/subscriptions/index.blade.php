@@ -13,6 +13,12 @@
                 <div class="px-6 py-6 bg-slate-100 border-t border-slate-300">
                     {{ $subscriptions->links() }}
                 </div>
+            @else
+                <div class="px-6 py-6 bg-slate-100 border-t border-slate-300">
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <p class="text-sm text-gray-700 leading-5">Showing {{ $subscriptions->count() }} {{ $subscriptions->count() === 1 ? 'result' : 'results' }}</p>
+                    </div>
+                </div>
             @endif
         </div>
     </div>
