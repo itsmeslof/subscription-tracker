@@ -27,7 +27,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <span class="text-gray-500 sm:text-sm">$</span>
                                 </div>
-                                <x-input id="amount" class="block mt-1 w-full pl-7" type="text" min="0.01" step="0.01" name="amount" :value="old('amount')" required />
+                                <x-input id="amount" class="block mt-1 w-full pl-7" type="number" min="0.01" step="0.01" name="amount" :value="old('amount')" required />
                             </div>
                         </div>
                         <div>
