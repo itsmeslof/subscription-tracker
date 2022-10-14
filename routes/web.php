@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\GlobalSiteSettingsController;
 use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UpdateGeneralSettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
+use App\Models\GlobalSiteSettings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,10 +25,17 @@ Route::get('/', function () {
     return redirect()->route('subscriptions.index');
 });
 
+Route::middleware(['auth', 'auth.admin'])->prefix('site-settings')->group(function () {
+    Route::get('/', [GlobalSiteSettingsController::class, 'index'])->name('admin.site_settings');
+    Route::patch('/update', [GlobalSiteSettingsController::class, 'update'])->name('admin.site_settings.update');
+});
+
 Route::middleware('auth')->prefix('account')->group(function () {
     Route::get('/', [UserController::class, 'edit'])->name('user.settings');
     Route::patch('/update', [UserController::class, 'update'])->name('user.update');
     Route::patch('/password/update', [UserPasswordController::class, 'update'])->name('user.password.update');
+
+    Route::patch('/settings/general/update', UpdateGeneralSettingsController::class)->name('settings.general.update');
 });
 
 Route::middleware('auth')->prefix('subscriptions')->group(function () {
@@ -40,4 +50,4 @@ Route::middleware('auth')->prefix('subscriptions')->group(function () {
     Route::post('/{subscription:slug}/activate', ActivateSubscriptionController::class)->name('subscriptions.activate');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

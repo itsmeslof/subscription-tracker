@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('billing_cycles', function (Blueprint $table) {
+        Schema::create('global_site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->boolean('registration_enabled')->default(false);
+            $table->boolean('show_home_page')->default(true);
+            $table->string('key')->default('subscription-tracker')->unique(); // Used to help enforce only one model instance
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billing_cycles');
+        Schema::dropIfExists('global_site_settings');
     }
 };

@@ -22,6 +22,6 @@ class UserPasswordController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with('status.user_password', 'Password updated');
+        return back()->with('status:user_password', 'Password updated');
     }
 }

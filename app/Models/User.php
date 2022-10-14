@@ -47,12 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Make the user an administrator.
-     */
-    public function setAsAdmin(): void
+    public function scopeAdmin($query)
     {
-        $this->update(['is_admin' => true]);
+        return $query->where('is_admin', true);
     }
 
     /**
@@ -83,5 +80,12 @@ class User extends Authenticatable
     public function getFormattedAnnualCostAttribute(): string
     {
         return MoneyHelper::formatMinor($this->total_annual_minor_cost);
+    }
+
+    public function generalSettings()
+    {
+        return $this->hasOne(UserGeneralSettings::class)->withDefault(
+            fn ($generalSettings, $user) => $user->generalSettings()->save($generalSettings)
+        );
     }
 }

@@ -22,6 +22,6 @@ class UserController extends Controller
 
         $request->user()->update($validated);
 
-        return back()->with('status.account_settings', 'Account details updated');
+        return back()->with('status:account_settings', 'Account details updated');
     }
 }

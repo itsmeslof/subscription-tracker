@@ -10,7 +10,7 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="divide-y">
             @forelse ($subscriptions as $subscription)
                 <tr class="bg-white hover:bg-slate-100">
                     <td scope="row" class="py-4 px-4">
