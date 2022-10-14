@@ -47,12 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Make the user an administrator.
-     */
-    public function setAsAdmin(): void
+    public function scopeAdmin($query)
     {
-        $this->update(['is_admin' => true]);
+        return $query->where('is_admin', true);
     }
 
     /**
