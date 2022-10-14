@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\BillingCycle;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class BillingCycleSeeder extends Seeder
 {
@@ -18,6 +18,11 @@ class BillingCycleSeeder extends Seeder
         $cycles = ['monthly', 'semiannually', 'annually'];
 
         foreach ($cycles as $cycle) {
+            if (BillingCycle::where('name', $cycle)->count()) {
+                Log::warning("Biling cycle {$cycle} already exists.");
+                continue;
+            }
+
             BillingCycle::create([
                 'name' => $cycle
             ]);
