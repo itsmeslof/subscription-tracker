@@ -58,14 +58,14 @@ class SubscriptionController extends Controller
     {
         $this->subscriptionService->store($request->user(), $request->validated());
 
-        return redirect()->route('subscriptions.index')->with('status', 'Subscription added!');
+        return redirect()->route('subscriptions.index')->with('status', 'Subscription added');
     }
 
     public function update(CreateSubscriptionRequest $request, Subscription $subscription): RedirectResponse
     {
         $this->subscriptionService->update($subscription, $request->validated());
 
-        return redirect()->route('subscriptions.edit', $subscription)->with('status', 'Subscription updated!');
+        return redirect()->route('subscriptions.edit', $subscription)->with('status', 'Subscription updated');
     }
 
     public function destroy(Request $request, Subscription $subscription): RedirectResponse

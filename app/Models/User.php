@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'total_monthly_minor_cost',
-        'total_annual_minor_cost'
+        'total_annual_minor_cost',
+        'theme'
     ];
 
     /**
@@ -80,12 +81,5 @@ class User extends Authenticatable
     public function getFormattedAnnualCostAttribute(): string
     {
         return MoneyHelper::formatMinor($this->total_annual_minor_cost);
-    }
-
-    public function generalSettings()
-    {
-        return $this->hasOne(UserGeneralSettings::class)->withDefault(
-            fn ($generalSettings, $user) => $user->generalSettings()->save($generalSettings)
-        );
     }
 }

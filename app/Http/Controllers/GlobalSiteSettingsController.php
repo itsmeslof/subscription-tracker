@@ -18,6 +18,6 @@ class GlobalSiteSettingsController extends Controller
     {
         GlobalSiteSettings::get()->update($request->validated());
 
-        return back()->with('status:settings:global', 'Site Settings Updated!');
+        return back()->with('status:settings:global', 'Site Settings Updated');
     }
 }

@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGeneralSettingsRequest extends FormRequest
+class UpdateUserSettingsRequest extends FormRequest
 {
-    protected $errorBag = 'generalSettings';
+    protected $errorBag = 'userSettings';
 
     /**
      * Determine if the user is authorized to make this request.

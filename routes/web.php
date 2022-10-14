@@ -4,10 +4,9 @@ use App\Http\Controllers\GlobalSiteSettingsController;
 use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\UpdateGeneralSettingsController;
+use App\Http\Controllers\UpdateUserSettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
-use App\Models\GlobalSiteSettings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +34,7 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::patch('/update', [UserController::class, 'update'])->name('user.update');
     Route::patch('/password/update', [UserPasswordController::class, 'update'])->name('user.password.update');
 
-    Route::patch('/settings/general/update', UpdateGeneralSettingsController::class)->name('settings.general.update');
+    Route::patch('/settings/general/update', UpdateUserSettingsController::class)->name('user.settings.update');
 });
 
 Route::middleware('auth')->prefix('subscriptions')->group(function () {

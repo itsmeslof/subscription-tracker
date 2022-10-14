@@ -68,10 +68,10 @@
                 <p class="text-sm text-slate-700">General</p>
             </div>
             <div class="p-6">
-                <x-status-errors :errors="$errors->generalSettings" />
+                <x-status-errors :errors="$errors->userSettings" />
                 <x-status-info-alert :status="session('status:settings:general')" />
 
-                <form action="{{ route('settings.general.update') }}" method="POST">
+                <form action="{{ route('user.settings.update') }}" method="POST">
                     @csrf
                     @method('PATCH')
 
@@ -80,8 +80,8 @@
                             <x-label for="theme" value="Theme" />
 
                             <select name="theme" id="theme" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" required>
-                                <option value="light" {{ !$user->generalSettings?->theme === 'light' ? 'selected' : '' }}>Light</option>
-                                <option value="dark" {{ $user->generalSettings?->theme === 'dark' ? 'selected' : '' }}>Dark</option>
+                                <option value="light" {{ !$user->theme === 'light' ? 'selected' : '' }}>Light</option>
+                                <option value="dark" {{ $user->theme === 'dark' ? 'selected' : '' }}>Dark</option>
                             </select>
                         </div>
                         <div class="mt-6">
