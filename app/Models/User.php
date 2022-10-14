@@ -81,4 +81,11 @@ class User extends Authenticatable
     {
         return MoneyHelper::formatMinor($this->total_annual_minor_cost);
     }
+
+    public function generalSettings()
+    {
+        return $this->hasOne(UserGeneralSettings::class)->withDefault(
+            fn ($generalSettings, $user) => $user->generalSettings()->save($generalSettings)
+        );
+    }
 }

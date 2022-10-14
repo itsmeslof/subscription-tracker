@@ -60,5 +60,36 @@
                 </form>
             </div>
         </div>
+        <div class="bg-white border border-slate-300 divide-y divide-slate-300 rounded-lg overflow-hidden mt-6">
+            <div class="p-6 flex space-x-2">
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Settings</h2>
+            </div>
+            <div class="bg-slate-100 text-slate-600 px-6 py-2">
+                <p class="text-sm text-slate-700">General</p>
+            </div>
+            <div class="p-6">
+                <x-status-errors :errors="$errors->generalSettings" />
+                <x-status-info-alert :status="session('status:settings:general')" />
+
+                <form action="{{ route('settings.general.update') }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="max-w-lg flex flex-col space-y-4">
+                        <div>
+                            <x-label for="theme" value="Theme" />
+
+                            <select name="theme" id="theme" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" required>
+                                <option value="light" {{ !$user->generalSettings?->theme === 'light' ? 'selected' : '' }}>Light</option>
+                                <option value="dark" {{ $user->generalSettings?->theme === 'dark' ? 'selected' : '' }}>Dark</option>
+                            </select>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="flex items-center text-sm font-medium border border-slate-600 bg-slate-600 text-white hover:text-white hover:bg-slate-700 hover:border-slate-700 focus:outline-none focus:outline-none focus:ring ring-blue-300 focus:text-white focus:bg-slate-700 focus:border-slate-700 transition duration-150 ease-in-out px-5 py-2 rounded-lg">Update General Settings</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </x-app-layout>
