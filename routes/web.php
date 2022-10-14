@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\GlobalSiteSettingsController;
 use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
+use App\Models\GlobalSiteSettings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('subscriptions.index');
+});
+
+Route::middleware(['auth', 'auth.admin'])->prefix('site-settings')->group(function () {
+    Route::get('/', [GlobalSiteSettingsController::class, 'index'])->name('admin.site_settings');
+    Route::patch('/update', [GlobalSiteSettingsController::class, 'update'])->name('admin.site_settings.update');
 });
 
 Route::middleware('auth')->prefix('account')->group(function () {
@@ -40,4 +47,4 @@ Route::middleware('auth')->prefix('subscriptions')->group(function () {
     Route::post('/{subscription:slug}/activate', ActivateSubscriptionController::class)->name('subscriptions.activate');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -6,5 +6,10 @@ $classes = ($active ?? false)
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }}>
+    @if ($active)
+    <span class="bg-slate-700 rounded-full py-1 px-2 inline-block mr-2 text-xs transition ease-in-out duration-150">ADMIN</span>
+    @else
+    <span class="bg-slate-200 rounded-full py-1 px-2 inline-block mr-2 text-xs group-hover:bg-slate-700 group-focus:bg-slate-700 transition ease-in-out duration-150">ADMIN</span>
+    @endif
     {{ $slot }}
 </a>
