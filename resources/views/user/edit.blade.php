@@ -6,7 +6,7 @@
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors->details" />
-                <x-status-info-alert :status="session('status.account_settings')" />
+                <x-status-info-alert :status="session('status:account_settings')" />
 
                 <form action="{{ route('user.update') }}" method="POST">
                     @csrf
@@ -36,7 +36,7 @@
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors->password" />
-                <x-status-info-alert :status="session('status.user_password')" />
+                <x-status-info-alert :status="session('status:user_password')" />
 
                 <form action="{{ route('user.password.update') }}" method="POST">
                     @csrf
