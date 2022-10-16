@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html
+    x-data="{ theme: '{{ session('theme') }}' }"
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="bg-slate-900"
+    x-bind:class="{ 'dark': theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) }"
+>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,9 +17,15 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-slate-50">
+    <body class="font-sans antialiased" x-cloak>
+        <div class="min-h-screen bg-slate-50 dark:bg-slate-900">
             @include('layouts.navigation')
 
             <!-- Page Content -->

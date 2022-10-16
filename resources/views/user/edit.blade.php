@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
-        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
-            <div class="p-6 border-b border-slate-300 flex space-x-2">
-                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Edit Account Details</h2>
+        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden divide-y divide-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
+            <div class="p-6 flex space-x-2">
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100">Edit Account Details</h2>
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors->details" />
@@ -30,9 +30,9 @@
                 </form>
             </div>
         </div>
-        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden mt-6">
-            <div class="p-6 border-b border-slate-300 flex space-x-2">
-                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Change Password</h2>
+        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden mt-6 divide-y divide-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
+            <div class="p-6 flex space-x-2">
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100">Change Password</h2>
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors->password" />
@@ -60,12 +60,12 @@
                 </form>
             </div>
         </div>
-        <div class="bg-white border border-slate-300 divide-y divide-slate-300 rounded-lg overflow-hidden mt-6">
+        <div class="bg-white border border-slate-300 divide-y divide-slate-300 rounded-lg overflow-hidden mt-6 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
             <div class="p-6 flex space-x-2">
-                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Settings</h2>
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100">Settings</h2>
             </div>
-            <div class="bg-slate-100 text-slate-600 px-6 py-2">
-                <p class="text-sm text-slate-700">General</p>
+            <div class="bg-slate-100 text-slate-600 px-6 py-2 dark:bg-slate-900">
+                <p class="text-sm text-slate-700 dark:text-slate-300">General</p>
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors->userSettings" />
@@ -79,9 +79,10 @@
                         <div>
                             <x-label for="theme" value="Theme" />
 
-                            <select name="theme" id="theme" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" required>
-                                <option value="light" {{ !$user->theme === 'light' ? 'selected' : '' }}>Light</option>
-                                <option value="dark" {{ $user->theme === 'dark' ? 'selected' : '' }}>Dark</option>
+                            <select name="theme" id="theme" class="rounded-md shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 block mt-1 w-full dark:bg-slate-800 dark:border-slate-600 dark:focus:ring-blue-300 dark:text-slate-100" required>
+                                <option value="light" {{ !$user->theme === 'light' ? 'selected' : '' }} class="dark:text-slate-300">Light</option>
+                                <option value="dark" {{ $user->theme === 'dark' ? 'selected' : '' }} class="dark:text-slate-300">Dark</option>
+                                <option value="system" {{ $user->theme === 'system' ? 'selected' : '' }} class="dark:text-slate-300">System Preference</option>
                             </select>
                         </div>
                         <div class="mt-6">

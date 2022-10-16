@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
-        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
-            <div class="p-6 border-b border-slate-300 flex space-x-2">
-                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Add New Subscription</h2>
+        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden divide-y divide-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
+            <div class="p-6 flex space-x-2">
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100">Add New Subscription</h2>
             </div>
             <div class="p-6">
                 <x-status-errors :errors="$errors"></x-status-errors>
@@ -33,7 +33,7 @@
                         <div>
                             <x-label for="billing_cycle_id" value="Billing Cycle" />
 
-                            <select name="billing_cycle_id" id="billing_cycle_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" required>
+                            <select name="billing_cycle_id" id="billing_cycle_id" class="rounded-md shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 block mt-1 w-full dark:bg-slate-800 dark:border-slate-600 dark:focus:ring-blue-300 dark:text-slate-100" required>
                                 @foreach ($availableBillingCycles as $billingCycle)
                                     <option value="{{ $billingCycle->id }}">
                                         {{ ucfirst($billingCycle->name) }}

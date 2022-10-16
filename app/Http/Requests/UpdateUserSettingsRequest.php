@@ -26,7 +26,7 @@ class UpdateUserSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'theme' => ['required', 'string', 'in:light,dark']
+            'theme' => ['required', 'string', 'in:light,dark,system']
         ];
     }
 }

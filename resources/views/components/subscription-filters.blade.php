@@ -1,5 +1,5 @@
-<div class="p-6 border-b border-slate-300">
-    <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight"><span class="capitalize">{{ $status }}</span> Subscriptions</h2>
+<div class="p-6">
+    <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100"><span class="capitalize">{{ $status }}</span> Subscriptions</h2>
 </div>
 
 <div class="flex justify-between items-end p-6" x-data="{
@@ -14,10 +14,10 @@
 }">
     <div class="flex space-x-4 items-end">
         <div>
-            <p class="text-slate-600 text-sm mb-2">Status Filter</p>
+            <p class="text-slate-600 text-sm mb-2 dark:text-slate-300">Status Filter</p>
             <x-dropdown align="left" width="48">
                 <x-slot name="trigger">
-                    <button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px]">
+                    <button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px] dark:bg-transparent dark:border-slate-600 dark:text-slate-300 dark:hover:border-slate-500">
                         <p x-text="newFilters.status" class="capitalize"></p>
 
                         <div class="ml-1">
@@ -29,12 +29,12 @@
                 </x-slot>
                 <x-slot name="content">
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.status = 'active';">
                         Active
                     </a>
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.status = 'cancelled';">
                         Cancelled
                     </a>
@@ -42,10 +42,10 @@
             </x-dropdown>
         </div>
         <div>
-            <p class="text-slate-600 text-sm mb-2">Billing Cycle Filter</p>
+            <p class="text-slate-600 text-sm mb-2 dark:text-slate-300">Billing Cycle Filter</p>
             <x-dropdown align="left" width="48">
                 <x-slot name="trigger">
-                    <button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px]">
+                    <button class="flex items-center justify-between space-x-2 text-sm font-medium border border-slate-300 bg-white text-slate-500 hover:text-slate-700 hover:border-slate-400 focus:outline-none focus:text-slate-700 focus:border-slate-400 transition duration-150 ease-in-out px-5 py-2 rounded-lg min-w-[120px] dark:bg-transparent dark:border-slate-600 dark:text-slate-300 dark:hover:border-slate-500">
                         <p x-text="newFilters.cycle" class="capitalize"></p>
 
                         <div>
@@ -57,22 +57,22 @@
                 </x-slot>
                 <x-slot name="content">
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.cycle = 'all';">
                         All
                     </a>
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.cycle = 'monthly';">
                         Monthly
                     </a>
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.cycle = 'semiannually';">
                         Semiannually
                     </a>
                     <a href="#"
-                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out"
+                        class="block px-4 py-2 text-sm leading-5 text-slate-700 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 transition duration-150 ease-in-out dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:bg-slate-800"
                         @click="$event.preventDefault(); newFilters.cycle = 'annually';">
                         Annually
                     </a>
@@ -83,10 +83,10 @@
             <input type="hidden" name="status" x-model="newFilters.status">
             <input type="hidden" name="cycle" x-model="newFilters.cycle">
 
-            <button class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150">Apply Filters</button>
+            <button class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150 dark:text-slate-300 dark:hover:text-slate-100">Apply Filters</button>
         </form>
         <form action="{{ route('subscriptions.index') }}" method="GET" x-show="currentFilters.status != 'active' || currentFilters.cycle != 'all'">
-            <button class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150">Reset Filters</button>
+            <button class="inline-block text-sm underline text-gray-600 hover:text-gray-900 transition ease-in-out duration-150 dark:text-slate-300 dark:hover:text-slate-100">Reset Filters</button>
         </form>
     </div>
     <div>
