@@ -26,11 +26,6 @@ class DatabaseSeeder extends Seeder
 
     private function createAdminAccount()
     {
-        if (User::admin()->count()) {
-            Log::warning("Can't crate admin account - one already exists!");
-            return;
-        }
-
         User::factory()->asAdmin()->create();
     }
 }

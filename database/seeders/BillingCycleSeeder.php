@@ -18,11 +18,6 @@ class BillingCycleSeeder extends Seeder
         $cycles = ['monthly', 'semiannually', 'annually'];
 
         foreach ($cycles as $cycle) {
-            if (BillingCycle::where('name', $cycle)->count()) {
-                Log::warning("Biling cycle {$cycle} already exists.");
-                continue;
-            }
-
             BillingCycle::create([
                 'name' => $cycle
             ]);
