@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <div class="bg-white border border-slate-300 rounded-lg overflow-hidden divide-y divide-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
             <div class="p-6 flex space-x-2">
-                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Manage Subscription</h2>
+                <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100">Manage Subscription</h2>
                 @if ($subscription->cancelled)
                     <span class="bg-orange-100 text-orange-900 font-bold text-xs flex justify-center items-center px-4 rounded-full">Cancelled</span>
                 @else

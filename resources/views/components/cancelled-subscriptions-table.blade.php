@@ -1,6 +1,6 @@
 <div class="overflow-x-auto relative">
     <table class="w-full text-left text-sm">
-        <thead class="bg-red-100 text-slate-600 border-y border-red-300">
+        <thead class="bg-red-100 text-slate-600 border-y border-red-300 dark:bg-red-300 dark:border-red-500 dark:text-red-800">
             <tr>
                 <th scope="col" class="py-4 px-4">Name</th>
                 <th scope="col" class="py-4 px-4">Price</th>
@@ -25,7 +25,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td scope="row" class="py-4 px-4">No subscriptions found</td>
+                    <td scope="row" class="py-4 px-4 dark:text-slate-300">No subscriptions found</td>
                 </tr>
             @endforelse
         </tbody>
