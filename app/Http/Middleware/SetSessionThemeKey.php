@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class SetSessionThemeKey
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,21 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->is_admin) {
+        $session = $request->session();
+
+        if (!auth()->check()) {
+            $session->put('theme', 'system');
             return $next($request);
         }
 
-        abort(404);
+        $theme = auth()->user()->theme;
+
+        if (!in_array($theme, ['light', 'dark', 'system'])) {
+            $theme = 'system';
+        }
+
+        $session->put('theme', $theme);
+
+        return $next($request);
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
-        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
-            <div class="p-6 border-b border-slate-300 flex space-x-2">
+        <div class="bg-white border border-slate-300 rounded-lg overflow-hidden divide-y divide-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:border-slate-600 dark:divide-slate-600">
+            <div class="p-6 flex space-x-2">
                 <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight">Manage Subscription</h2>
                 @if ($subscription->cancelled)
                     <span class="bg-orange-100 text-orange-900 font-bold text-xs flex justify-center items-center px-4 rounded-full">Cancelled</span>
@@ -40,7 +40,7 @@
                         <div>
                             <x-label for="billing_cycle_id" value="Billing Cycle" />
 
-                            <select name="billing_cycle_id" id="billing_cycle_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" required>
+                            <select name="billing_cycle_id" id="billing_cycle_id" class="rounded-md shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 block mt-1 w-full dark:bg-slate-800 dark:border-slate-600 dark:focus:ring-blue-300 dark:text-slate-100" required>
                                 @foreach ($availableBillingCycles as $billingCycle)
                                     <option
                                         value="{{ $billingCycle->id }}"
@@ -65,8 +65,8 @@
 
                 </form>
             </div>
-            <div class="bg-slate-100 border-y border-slate-300 px-6 py-4">
-                <h2 class="text-sm text-slate-600 leading-tight">More Actions</h2>
+            <div class="bg-slate-100 text-slate-600 px-6 py-2 dark:bg-slate-900">
+                <p class="text-sm text-slate-700 dark:text-slate-300">More Actions</p>
             </div>
             <div class="p-6">
                 <div class="flex space-x-2">
