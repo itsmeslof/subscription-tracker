@@ -2,7 +2,7 @@
     <h2 class="font-semibold text-2xl font-bold text-slate-600 leading-tight dark:text-slate-100"><span class="capitalize">{{ $status }}</span> Subscriptions</h2>
 </div>
 
-<div class="flex justify-between items-end p-6" x-data="{
+<div class="flex flex-col items-start space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-end p-6" x-data="{
     currentFilters: {
         status: '{{ $status }}',
         cycle: '{{ $cycle }}'
