@@ -23,7 +23,7 @@ return new class extends Migration
             $table->char('color', 7);
             $table->boolean('cancelled')->default(false);
             $table->string('renewal_note')->nullable();
-            $table->foreignIdFor(User::class)->onDelete('cascade');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
