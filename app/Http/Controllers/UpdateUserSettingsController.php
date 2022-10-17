@@ -14,8 +14,6 @@ class UpdateUserSettingsController extends Controller
      */
     public function __invoke(UpdateUserSettingsRequest $request)
     {
-        $request->user()->update($request->validated());
-
-        return back()->with('status:settings:general', 'Settings Updated');
+        return back();
     }
 }

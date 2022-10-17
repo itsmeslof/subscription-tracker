@@ -1,5 +1,5 @@
 <div class="overflow-x-auto relative">
-    <table class="table-auto overflow-scroll w-full text-left text-sm divide-y divide-slate-300 dark:divide-slate-600">
+    <table class="table-auto w-full text-left text-sm divide-y divide-slate-300 dark:divide-slate-600">
         <thead class="bg-slate-100 text-slate-600 dark:text-slate-400 dark:bg-slate-900">
             <tr>
                 <th scope="col" class="py-4 px-4 whitespace-nowrap">Name</th>

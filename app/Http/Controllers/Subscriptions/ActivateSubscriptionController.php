@@ -16,10 +16,6 @@ class ActivateSubscriptionController extends Controller
      */
     public function __invoke(Request $request, Subscription $subscription)
     {
-        $subscription->update([
-            'cancelled' => false
-        ]);
-
         return back();
     }
 }
