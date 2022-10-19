@@ -57,6 +57,7 @@
     ```sh
     php artisan st:setup # Default login: 'admin@example.com', 'password'
     ```
+8. Run your php server
 
 After running the setup command, you can login with 'admin@example.com', 'password'. **You should change the default email and password.**
 
