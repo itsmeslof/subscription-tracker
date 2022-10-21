@@ -46,12 +46,12 @@
                         <div>
                             <x-label for="current_password" value="Current Password" />
 
-                            <x-input id="current_password" class="block mt-1 w-full" type="password" name="current_password" :value="old('current_password', '')" required />
+                            <x-input id="current_password" class="block mt-1 w-full" type="password" name="current_password" autocomplete="new-password" :value="old('current_password', '')" required />
                         </div>
                         <div>
                             <x-label for="new_password" value="New Password" />
 
-                            <x-input id="new_password" class="block mt-1 w-full" type="password" name="new_password" :value="old('new_password', '')" required />
+                            <x-input id="new_password" class="block mt-1 w-full" type="password" name="new_password" autocomplete="new-password" :value="old('new_password', '')" required />
                         </div>
                         <div class="mt-6">
                             <button type="submit" class="flex items-center text-sm font-medium border border-slate-600 bg-slate-600 text-white hover:text-white hover:bg-slate-700 hover:border-slate-700 focus:outline-none focus:outline-none focus:ring ring-blue-300 focus:text-white focus:bg-slate-700 focus:border-slate-700 transition duration-150 ease-in-out px-5 py-2 rounded-lg">Change Password</button>
