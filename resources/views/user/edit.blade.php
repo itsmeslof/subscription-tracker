@@ -91,6 +91,37 @@
                     </div>
                 </form>
             </div>
+            <div class="bg-slate-100 text-slate-600 px-6 py-2 dark:bg-slate-900">
+                <p class="text-sm text-slate-700 dark:text-slate-300">Security</p>
+            </div>
+            <div class="p-6">
+                <x-status-errors :errors="$errors->ipAccess" />
+                <x-status-info-alert :status="session('status:settings:ipAccess')" />
+
+                <form action="{{ route('user.settings.ipaccess.update') }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="max-w-lg flex flex-col space-y-4">
+                        <div>
+                            <x-label for="restrict_ip_access" value="Restrict IP Access" />
+
+                            <select name="restrict_ip_access" id="restrict_ip_access" class="rounded-md shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 block mt-1 w-full dark:bg-slate-800 dark:border-slate-600 dark:focus:ring-blue-300 dark:text-slate-100" required>
+                                <option value="1" {{ $user->restrict_ip_access ? 'selected' : '' }} class="dark:text-slate-300">Yes</option>
+                                <option value="0" {{ !$user->restrict_ip_access ? 'selected' : '' }} class="dark:text-slate-300">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <x-label for="allowed_ip" value="Allowed IPV4 Address" />
+
+                            <x-input id="allowed_ip" class="block mt-1 w-full" type="text" name="allowed_ip" autocomplete="off" :value="old('new_password', $user->allowed_ip)" />
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="flex items-center text-sm font-medium border border-slate-600 bg-slate-600 text-white hover:text-white hover:bg-slate-700 hover:border-slate-700 focus:outline-none focus:outline-none focus:ring ring-blue-300 focus:text-white focus:bg-slate-700 focus:border-slate-700 transition duration-150 ease-in-out px-5 py-2 rounded-lg">Update Privacy Settings</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </x-app-layout>

@@ -27,7 +27,9 @@ class User extends Authenticatable
         'total_monthly_minor_cost',
         'total_annual_minor_cost',
         'theme',
-        'is_admin'
+        'is_admin',
+        'restrict_ip_access',
+        'allowed_ip'
     ];
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Subscriptions\ActivateSubscriptionController;
 use App\Http\Controllers\Subscriptions\CancelSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UpdateIPRestrictionController;
 use App\Http\Controllers\UpdateUserSettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
@@ -29,6 +30,7 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::patch('/password/update', [UserPasswordController::class, 'update'])->name('user.password.update');
 
     Route::patch('/settings/general/update', UpdateUserSettingsController::class)->name('user.settings.update');
+    Route::patch('/settings/ipaccess/update', UpdateIPRestrictionController::class)->name('user.settings.ipaccess.update');
 });
 
 Route::middleware('auth')->prefix('subscriptions')->group(function () {
