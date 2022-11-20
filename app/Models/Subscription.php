@@ -14,6 +14,9 @@ class Subscription extends Model
 {
     use HasFactory, HasSlug;
 
+    // Maximum unsigned int value '4294967295', rounded down, creating a maximum USD amount of 42_949_672
+    const MAX_MINOR_AMOUNT = 4294967200;
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

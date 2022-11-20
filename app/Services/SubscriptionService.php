@@ -21,7 +21,10 @@ class SubscriptionService
      */
     public function store(User $user, $subscriptionData): void
     {
-        $subscriptionData['amount'] = $this->tryConvertAmountToMinor($subscriptionData['amount']);
+        $minorAmount = $this->tryConvertAmountToMinor($subscriptionData['amount']);
+        $this->ensureAmountUnderLimit($minorAmount);
+
+        $subscriptionData['amount'] = $minorAmount;
         $user->subscriptions()->create($subscriptionData);
     }
 
@@ -33,9 +36,10 @@ class SubscriptionService
      */
     public function update(Subscription $subscription, $subscriptionData): void
     {
-        if ($subscriptionData['amount'] ?? false) {
-            $subscriptionData['amount'] = $this->tryConvertAmountToMinor($subscriptionData['amount']);
-        }
+        $minorAmount = $this->tryConvertAmountToMinor($subscriptionData['amount']);
+        $this->ensureAmountUnderLimit($minorAmount);
+
+        $subscriptionData['amount'] = $minorAmount;
         $subscription->update($subscriptionData);
     }
 
@@ -92,5 +96,20 @@ class SubscriptionService
         }
 
         return $minorAmount;
+    }
+
+    /**
+     * Ensures that the provided minor amount is not greater than the allowed maximum integer value in the database.
+     *
+     * @param int $minorAmount
+     *
+     * @throws InvalidSubscriptionAmountException
+     */
+    private function ensureAmountUnderLimit(int $minorAmount): void
+    {
+        if ($minorAmount > Subscription::MAX_MINOR_AMOUNT) {
+            $formattedMaxAmount = MoneyHelper::formatMinor(Subscription::MAX_MINOR_AMOUNT);
+            throw new InvalidSubscriptionAmountException('The maximum amount allowed is ' . $formattedMaxAmount);
+        }
     }
 }
