@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 class SubscriptionService
 {
     /**
-     * Persist a new Subscription model to the databse.
+     * Persist a new Subscription model to the database.
      *
      * @param User $user
      * @param array $subscriptionData
